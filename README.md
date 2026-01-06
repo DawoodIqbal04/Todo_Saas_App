@@ -4,7 +4,7 @@ A simple yet powerful command-line interface (CLI) Todo application built with P
 
 ## ✨ Features
 
--   **Add Tasks**: Quickly add new tasks with a title and an optional description.
+-   **Add Tasks**: Quickly add new tasks with title and an optional description.
 -   **Unique Short IDs**: Tasks are assigned a unique, short 4-character ID for easy reference.
 -   **List Tasks**: View all your tasks with clear indicators for their completion status.
 -   **Update Tasks**: Modify existing task titles or descriptions.
