@@ -9,6 +9,7 @@ param(
     [Parameter(ValueFromRemainingArguments = $true)]
     [string[]]$FeatureDescription
 )
+Write-Host "FeatureDescription: $($FeatureDescription -join ' | ')"
 $ErrorActionPreference = 'Stop'
 
 # Show help if requested
