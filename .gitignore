@@ -1,0 +1,67 @@
+# Python specific
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Dist/Build
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# Byte-compiled / optimized / DLL files
+*.pyo
+*.pyc
+*.pyd
+
+# Distribution / packaging
+*.egg
+*.egg-info
+dist/
+build/
+*.msi
+*.exe
+*.tar.gz
+*.whl
+
+# Logging
+*.log
+*.log.*
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+*.tmp
+.DS_Store
+
+# Secrets and environment variables
+.env
+.env.*
+# Exclude .env.example if it exists and is intended to be committed
+# !.env.example
+
+# Node.js / Frontend specific
+node_modules/
+npm-cache/
+jspm_packages/
+bower_components/
+dist/
+build/
+coverage/
+*.log
+*.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# OS generated files
+.DS_Store
+Thumbs.db
