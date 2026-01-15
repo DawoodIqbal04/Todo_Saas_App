@@ -1,53 +1,97 @@
 <!--
 Sync Impact Report:
-- Version change: 0.0.0 → 1.0.0
+- Version change: 1.0.0 → 2.0.0
 - List of modified principles:
-  - [PRINCIPLE_1_NAME] → Core CRUD Functionality
-  - [PRINCIPLE_2_NAME] → Technical Stack & Constraints
-  - [PRINCIPLE_3_NAME] → Code Quality & Architecture
-  - [PRINCIPLE_4_NAME] → User Experience (UX)
-  - [PRINCIPLE_5_NAME] → Development Workflow
-- Added sections: None
-- Removed sections: [SECTION_2_NAME], [SECTION_3_NAME]
+  - Core CRUD Functionality → Functional Requirements
+  - Technical Stack & Constraints → API Contract
+  - Code Quality & Architecture → Authentication & Security
+  - User Experience (UX) → Tech Stack
+  - Development Workflow → Architectural Rules
+- Added sections: 
+  - API Behavior Requirements
+  - Quality & Review Standard
+- Removed sections: None
 - Templates requiring updates:
   - ✅ .specify/templates/plan-template.md (No changes needed)
   - ✅ .specify/templates/spec-template.md (No changes needed)
   - ✅ .specify/templates/tasks-template.md (No changes needed)
 - Follow-up TODOs: None
 -->
-# In-Memory Command-Line Todo Application Constitution
+# Full-Stack Todo Application Constitution
 
 ## Core Principles
 
-### I. Core CRUD Functionality
-A task must have a unique ID, title, description, and a completion status (defaulting to incomplete). The application MUST support the following operations:
-- **Add:** Create a new task.
-- **View/List:** Display all tasks with their status.
-- **Update:** Modify an existing task's title and/or description.
-- **Delete:** Remove a task by its ID.
-- **Toggle:** Mark a task as complete or incomplete.
+### I. Functional Requirements
+- Users can sign up and sign in via Better Auth
+- Each authenticated user can:
+  - Create tasks
+  - View all their tasks
+  - View a single task
+  - Update tasks
+  - Delete tasks
+  - Toggle task completion
+- Users must **only access their own tasks**
 
-### II. Technical Stack & Constraints
-- **Language:** Python 3.13+
-- **Runner:** UV must be used for execution.
-- **Interface:** The application is a command-line/console application only. No graphical or web interfaces are permitted.
-- **Data Storage:** All data MUST be stored in-memory. Data is lost upon application restart, and no file or database persistence should be implemented.
+### II. API Contract (MUST BE PRESERVED)
+- GET /api/{user_id}/tasks
+- POST /api/{user_id}/tasks
+- GET /api/{user_id}/tasks/{id}
+- PUT /api/{user_id}/tasks/{id}
+- DELETE /api/{user_id}/tasks/{id}
+- PATCH /api/{user_id}/tasks/{id}/complete
 
-### III. Code Quality & Architecture
-- **Clean Code:** The codebase MUST adhere to clean code principles, including readability, small and focused functions, and clear, descriptive naming conventions.
-- **Project Structure:** A proper Python project structure MUST be used to ensure separation of concerns.
-- **Simplicity:** Avoid unnecessary complexity and premature abstractions. Follow the "You Ain't Gonna Need It" (YAGNI) principle.
-- **Error Handling:** The application MUST gracefully handle invalid user input, such as non-existent IDs or empty fields.
-- **Extensibility:** The code MUST be structured in a way that is easy to extend for future feature additions.
+### III. Authentication & Security (CRITICAL)
+- Better Auth runs on the Next.js frontend
+- Better Auth **must issue JWT tokens**
+- Frontend must attach JWT tokens to all API requests using:
+`Authorization: Bearer <token>`
+- FastAPI backend must:
+- Verify JWT signature using a shared secret
+- Decode JWT to extract authenticated user identity
+- Match JWT user ID with `{user_id}` in the request path
+- Reject mismatches with `401 Unauthorized`
+- JWT secret must be shared via environment variable:
+`BETTER_AUTH_SECRET`
 
-### IV. User Experience (UX)
-- **Clarity:** All command-line prompts and messages directed to the user MUST be clear and unambiguous.
-- **Professionalism:** The user experience should be minimal but professional, providing a straightforward and efficient interface.
+### IV. Tech Stack (MANDATORY)
+#### Frontend
+- Next.js 16+ (App Router)
+- Better Auth (JWT enabled)
+- Responsive UI
 
-### V. Development Workflow
-The project MUST be developed and maintained to a high standard, as if it were being reviewed by senior engineers in a hackathon. This principle emphasizes code clarity, thoughtful design, and robust implementation over rapid, un-tested feature delivery.
+#### Backend
+- Python FastAPI
+- SQLModel ORM
+- JWT verification middleware
+- RESTful architecture
+
+#### Database
+- Neon Serverless PostgreSQL
+- Tasks linked to authenticated users via user ID
+
+### V. Architectural Rules
+- Treat the CLI app as a logical prototype; refactor its logic into:
+- Models
+- Services
+- API routes
+- Enforce task ownership at **every** database query
+- Keep backend stateless (JWT-based auth only)
+- Follow clean code and separation of concerns
+- Design for extensibility for future phases
+
+### VI. API Behavior Requirements
+- All endpoints require valid JWT authentication
+- Requests without valid tokens return `401 Unauthorized`
+- All responses must be scoped to the authenticated user
+- No cross-user data access is permitted
+
+### VII. Quality & Review Standard
+- Code must be production-grade and hackathon-ready
+- Clear project structure for both frontend and backend
+- Security-first mindset
+- Readable, maintainable, and well-organized code
 
 ## Governance
 This constitution is the single source of truth for project-level decisions. All development, code reviews, and architectural discussions must align with these principles. Amendments require documented justification, review, and consensus.
 
-**Version**: 1.0.0 | **Ratified**: 2026-01-06 | **Last Amended**: 2026-01-06
+**Version**: 2.0.0 | **Ratified**: 2026-01-06 | **Last Amended**: 2026-01-15
