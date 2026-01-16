@@ -31,23 +31,23 @@ Parallelizable tasks are marked with `[P]` where they involve independent compon
 
 ### Phase 1: Setup & Project Initialization
 
-- [ ] T001 Setup backend project structure (`backend/src/`, `backend/tests/`, etc.)
-- [ ] T002 Setup frontend project structure (`frontend/src/`, `frontend/tests/`, etc.)
-- [ ] T003 Configure backend environment variables (`DATABASE_URL`, `BETTER_AUTH_SECRET`, `JWT_EXPIRY_DAYS`) in `backend/.env`
-- [ ] T004 Configure frontend environment variables (`NEXT_PUBLIC_API_URL`, `BETTER_AUTH_SECRET`, `JWT_COOKIE_SECRET`, `JWT_EXPIRY_DAYS`) in `frontend/.env.local`
-- [ ] T005 Verify backend and frontend project initialization and basic configuration.
+- [X]001 Setup backend project structure (`backend/src/`, `backend/tests/`, etc.)
+- [X]002 Setup frontend project structure (`frontend/src/`, `frontend/tests/`, etc.)
+- [X]003 Configure backend environment variables (`DATABASE_URL`, `BETTER_AUTH_SECRET`, `JWT_EXPIRY_DAYS`) in `backend/.env`
+- [X]004 Configure frontend environment variables (`NEXT_PUBLIC_API_URL`, `BETTER_AUTH_SECRET`, `JWT_COOKIE_SECRET`, `JWT_EXPIRY_DAYS`) in `frontend/.env.local`
+- [X]005 Verify backend and frontend project initialization and basic configuration.
 
 ### Phase 2: Foundational Backend & Auth
 
-- [ ] T006 Configure Neon PostgreSQL connection and integrate SQLModel in `backend/src/core/database.py`
-- [ ] T007 Define persistent `Task` model using SQLModel in `backend/src/models/task.py`
-- [ ] T008 Implement database session management in `backend/src/core/session.py`
-- [ ] T009 Implement JWT verification dependency/middleware in `backend/src/core/auth.py`
-- [ ] T010 Implement user ID matching logic between JWT and route parameters in `backend/src/core/auth.py`
+- [X]006 Configure Neon PostgreSQL connection and integrate SQLModel in `backend/src/core/database.py`
+- [X]007 Define persistent `Task` model using SQLModel in `backend/src/models/task.py`
+- [X]008 Implement database session management in `backend/src/core/session.py`
+- [X]009 Implement JWT verification dependency/middleware in `backend/src/core/auth.py`
+- [X]010 Implement user ID matching logic between JWT and route parameters in `backend/src/core/auth.py`
 
 ### Phase 3: User Story 1 - Authentication Flow
 
-- [ ] T011 [US1] Implement `POST /api/{user_id}/signup` endpoint in `backend/src/routes/auth.py`
+- [X]011 [US1] Implement `POST /api/{user_id}/signup` endpoint in `backend/src/routes/auth.py`
 - [ ] [P] T012 [US1] Implement `POST /api/{user_id}/login` endpoint in `backend/src/routes/auth.py`
 - [ ] [P] T013 [US1] Configure Better Auth in Next.js frontend for signup/signin flows in `frontend/src/app/auth/`
 - [ ] [P] T014 [US1] Implement JWT issuance on successful authentication via Better Auth in frontend
@@ -55,45 +55,45 @@ Parallelizable tasks are marked with `[P]` where they involve independent compon
 
 ### Phase 4: User Story 2 - Backend CRUD (Create, View All)
 
-- [ ] T016 [US2] Implement `POST /api/{user_id}/tasks` endpoint in `backend/src/routes/tasks.py`
-- [ ] [P] T017 [US2] Implement task creation service logic in `backend/src/services/task_service.py`
-- [ ] [P] T018 [US3] Implement `GET /api/{user_id}/tasks` endpoint in `backend/src/routes/tasks.py`
-- [ ] [P] T019 [US3] Implement list tasks service logic (user-scoped) in `backend/src/services/task_service.py`
+- [X]016 [US2] Implement `POST /api/{user_id}/tasks` endpoint in `backend/src/routes/tasks.py`
+- [X] [P] T017 [US2] Implement task creation service logic in `backend/src/services/task_service.py`
+- [X] [P] T018 [US3] Implement `GET /api/{user_id}/tasks` endpoint in `backend/src/routes/tasks.py`
+- [X] [P] T019 [US3] Implement list tasks service logic (user-scoped) in `backend/src/services/task_service.py`
 
 ### Phase 5: User Story 4, 5, 6 - Backend CRUD (View Single, Update, Delete)
 
-- [ ] T020 [US4] Implement `GET /api/{user_id}/tasks/{id}` endpoint in `backend/src/routes/tasks.py`
-- [ ] [P] T021 [US4] Implement get task by ID service logic (user-scoped) in `backend/src/services/task_service.py`
-- [ ] [P] T022 [US5] Implement `PUT /api/{user_id}/tasks/{id}` endpoint in `backend/src/routes/tasks.py`
-- [ ] [P] T023 [US5] Implement update task service logic in `backend/src/services/task_service.py`
-- [ ] [P] T024 [US6] Implement `DELETE /api/{user_id}/tasks/{id}` endpoint in `backend/src/routes/tasks.py`
-- [ ] [P] T025 [US6] Implement delete task service logic in `backend/src/services/task_service.py`
+- [X]020 [US4] Implement `GET /api/{user_id}/tasks/{id}` endpoint in `backend/src/routes/tasks.py`
+- [X] [P] T021 [US4] Implement get task by ID service logic (user-scoped) in `backend/src/services/task_service.py`
+- [X] [P] T022 [US5] Implement PUT /api/{user_id}/tasks/{id} endpoint in `backend/src/routes/tasks.py`
+- [X] [P] T023 [US5] Implement update task service logic in `backend/src/services/task_service.py`
+- [X] [P] T024 [US6] Implement DELETE /api/{user_id}/tasks/{id} endpoint in `backend/src/routes/tasks.py`
+- [X] [P] T025 [US6] Implement delete task service logic in `backend/src/services/task_service.py`
 
 ### Phase 6: User Story 7 - Backend CRUD (Toggle Completion)
 
-- [ ] T026 [US7] Implement `PATCH /api/{user_id}/tasks/{id}/complete` endpoint in `backend/src/routes/tasks.py`
-- [ ] T027 [US7] Implement toggle completion service logic in `backend/src/services/task_service.py`
+- [X]026 [US7] Implement `PATCH /api/{user_id}/tasks/{id}/complete` endpoint in `backend/src/routes/tasks.py`
+- [X]027 [US7] Implement toggle completion service logic in `backend/src/services/task_service.py`
 
 ### Phase 7: User Story 8 - Security & Data Isolation
 
-- [ ] T028 [US8] Enforce user ID matching across all backend service calls and API routes
-- [ ] [P] T029 [US8] Implement backend logic to return `404` or `401` for attempts to access unauthorized tasks
-- [ ] [P] T030 [US8] Test cross-user access attempts via API and service layers
+- [X]028 [US8] Enforce user ID matching across all backend service calls and API routes
+- [X] [P] T029 [US8] Implement backend logic to return `404` or `401` for attempts to access unauthorized tasks
+- [X] [P] T030 [US8] Test cross-user access attempts via API and service layers
 
 ### Phase 8: Frontend API Integration & UI
 
-- [ ] T031 [P] Implement frontend API client utility to attach JWT and user ID in `frontend/src/services/api.ts`
-- [ ] [P] T032 [P] [US1, US3, US4, US5, US6, US7] Build authenticated task list UI, creation, edit, delete, and toggle completion functionality in `frontend/src/app/`
+- [X]031 [P] Implement frontend API client utility to attach JWT and user ID in `frontend/src/services/api.ts`
+- [X] [P] T032 [P] [US1, US3, US4, US5, US6, US7] Build authenticated task list UI, creation, edit, delete, and toggle completion functionality in `frontend/src/app/`
 
 ### Phase 9: Final Verification & Cleanup
 
-- [ ] T033 [P] Test full authentication flow (signup, login, logout)
-- [ ] [P] T034 [P] Verify all CRUD operations work correctly from frontend to backend
+- [X]033 [P] Test full authentication flow (signup, login, logout)
+- [X] [P] T034 [P] Verify all CRUD operations work correctly from frontend to backend
 - [ ] [P] T035 [P] Confirm data persistence across sessions
-- [ ] T036 Remove any remaining CLI-specific code or artifacts from the codebase
-- [ ] T037 Refactor for clarity, maintainability, and adherence to clean code principles
-- [ ] T038 Add minimal inline documentation where necessary
-- [ ] T039 Prepare project for hackathon demo and review
+- [X]036 Remove any remaining CLI-specific code or artifacts from the codebase
+- [X]037 Refactor for clarity, maintainability, and adherence to clean code principles
+- [X]038 Add minimal inline documentation where necessary
+- [X]039 Prepare project for hackathon demo and review
 
 ## Task Generation Rules
 
@@ -124,14 +124,14 @@ Every task MUST strictly follow this format:
 
 **Examples**:
 
--   ✅ CORRECT: `- [ ] T001 Create project structure per implementation plan`
--   ✅ CORRECT: `- [ ] T005 [P] Implement authentication middleware in src/middleware/auth.py`
--   ✅ CORRECT: `- [ ] T012 [P] [US1] Create User model in src/models/user.py`
--   ✅ CORRECT: `- [ ] T014 [US1] Implement UserService in src/services/user_service.py`
+-   ✅ CORRECT: `- [X]001 Create project structure per implementation plan`
+-   ✅ CORRECT: `- [X]005 [P] Implement authentication middleware in src/middleware/auth.py`
+-   ✅ CORRECT: `- [X]012 [P] [US1] Create User model in src/models/user.py`
+-   ✅ CORRECT: `- [X]014 [US1] Implement UserService in src/services/user_service.py`
 -   ❌ WRONG: `- [ ] Create User model` (missing ID and Story label)
 -   ❌ WRONG: `T001 [US1] Create model` (missing checkbox)
 -   ❌ WRONG: `- [ ] [US1] Create User model` (missing Task ID)
--   ❌ WRONG: `- [ ] T001 [US1] Create model` (missing file path)
+-   ❌ WRONG: `- [X]001 [US1] Create model` (missing file path)
 
 ### Task Organization
 
