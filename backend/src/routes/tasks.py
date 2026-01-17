@@ -4,7 +4,7 @@ from sqlmodel import Session
 
 from backend.src.core.auth import verify_user_id_match
 from backend.src.core.session import get_db
-from backend.src.models.task import Task, TaskBase
+from backend.src.models.task import Task, TaskCreate, TaskUpdate
 from backend.src.services.task_service import TaskService
 
 router = APIRouter()
@@ -12,7 +12,7 @@ router = APIRouter()
 @router.post("/{user_id}/tasks", response_model=Task, status_code=status.HTTP_201_CREATED)
 async def create_task(
     user_id: str,
-    task_input: TaskBase,
+    task_input: TaskCreate,
     current_user_id: str = Depends(verify_user_id_match),
     db: Session = Depends(get_db)
 ):
@@ -45,7 +45,7 @@ async def get_task(
 async def update_task(
     user_id: str,
     id: int,
-    task_update: TaskBase,
+    task_update: TaskUpdate,
     current_user_id: str = Depends(verify_user_id_match),
     db: Session = Depends(get_db)
 ):

@@ -28,9 +28,9 @@ async def signup(
     
     access_token_expires = timedelta(days=int(os.getenv("JWT_EXPIRY_DAYS", "7")))
     access_token = create_access_token(
-        data={"sub": str(new_user.id)}, expires_delta=access_token_expires
+        data={"sub": str(new_user.id), "fullname": new_user.fullname}, expires_delta=access_token_expires
     )
-    return {"access_token": access_token, "token_type": "bearer", "user_id": str(new_user.id)}
+    return {"access_token": access_token, "token_type": "bearer", "user_id": str(new_user.id), "fullname": new_user.fullname}
 
 @router.post("/login", response_model=dict)
 async def login(
@@ -47,6 +47,6 @@ async def login(
     
     access_token_expires = timedelta(days=int(os.getenv("JWT_EXPIRY_DAYS", "7")))
     access_token = create_access_token(
-        data={"sub": str(user.id)}, expires_delta=access_token_expires
+        data={"sub": str(user.id), "fullname": user.fullname}, expires_delta=access_token_expires
     )
-    return {"access_token": access_token, "token_type": "bearer", "user_id": str(user.id)}
+    return {"access_token": access_token, "token_type": "bearer", "user_id": str(user.id), "fullname": user.fullname}

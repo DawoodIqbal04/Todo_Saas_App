@@ -22,7 +22,7 @@ def create_user(db: Session, user_register: UserRegister) -> User:
         print("Hashing password...")
         hashed_password = get_password_hash(user_register.password)
         print("Password hashed. Creating user object...")
-        user = User(email=user_register.email, hashed_password=hashed_password)
+        user = User(email=user_register.email, hashed_password=hashed_password, fullname=user_register.fullname)
         print(f"User object created: {user}")
         db.add(user)
         print("User added to session.")

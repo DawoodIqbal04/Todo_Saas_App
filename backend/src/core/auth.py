@@ -45,11 +45,11 @@ async def get_current_user_id(token: str = Depends(oauth2_scheme)):
         print(f"Unexpected error during token validation: {e}")
         raise credentials_exception
 
-async def verify_user_id_match(path_user_id: str, current_user_id: str = Depends(get_current_user_id)):
+async def verify_user_id_match(user_id: str, current_user_id: str = Depends(get_current_user_id)):
     """
     Verifies that the user ID from the JWT matches the user ID in the path.
     """
-    if path_user_id != current_user_id:
+    if user_id != current_user_id:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="User ID mismatch. Cannot access resources of another user.",
