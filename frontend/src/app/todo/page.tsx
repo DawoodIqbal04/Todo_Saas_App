@@ -21,7 +21,7 @@ export default function TodoPage() {
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const router = useRouter();
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+  const API_URL = process.env.VERCEL_ENV ? "/api" : (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api");
 
   const fetchTasks = async () => {
     if (!token || !userId) return;
