@@ -30,6 +30,8 @@ export default function SignupPage() {
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("userId", data.user_id);
         localStorage.setItem("fullname", data.fullname);
+        // Dispatch custom event to notify other components
+        window.dispatchEvent(new CustomEvent("auth-change"));
         router.push("/todo");
       } else {
         setMessage(data.detail || "Failed to sign up");
@@ -40,8 +42,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white dark:bg-black">
-      <Navbar />
+    <div className="flex pt-30 flex-col min-h-screen bg-white dark:bg-black">
       <main className="flex-1 flex items-center justify-center p-4 md:p-6">
         <div className="w-full max-w-md bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg p-6 space-y-6">
           <div className="space-y-2 text-center">
@@ -86,7 +87,6 @@ export default function SignupPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

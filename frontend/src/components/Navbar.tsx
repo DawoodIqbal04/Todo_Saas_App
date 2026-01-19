@@ -4,22 +4,36 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-
 export default function Navbar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    // Check for authentication status, e.g., from local storage or a cookie
-    const token = localStorage.getItem("token"); // Placeholder for actual auth check
-    setIsAuthenticated(!!token);
+    const handleAuthChange = () => {
+      const token = localStorage.getItem("token");
+      setIsAuthenticated(!!token);
+    };
+
+    // Listen for storage events from other tabs
+    window.addEventListener("storage", handleAuthChange);
+
+    // Listen for custom auth-change event from same tab
+    window.addEventListener("auth-change", handleAuthChange);
+
+    // Initial check
+    handleAuthChange();
+
+    return () => {
+      window.removeEventListener("storage", handleAuthChange);
+      window.removeEventListener("auth-change", handleAuthChange);
+    };
   }, []);
 
   const handleLogout = () => {
-    // Perform logout actions, e.g., clear token, redirect
-    localStorage.removeItem("token"); // Placeholder for actual logout
-    setIsAuthenticated(false);
-    router.push("/auth"); // Redirect to login page after logout
+    localStorage.removeItem("token");
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new CustomEvent("auth-change"));
+    router.push("/auth");
   };
 
   return (
