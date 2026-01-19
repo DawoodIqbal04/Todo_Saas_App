@@ -3,10 +3,10 @@ from sqlmodel import Session
 from datetime import timedelta
 import os
 
-from backend.src.core.auth import create_access_token
-from backend.src.core.session import get_db
-from backend.src.models.user import UserRegister
-from backend.src.services.user_service import get_user_by_email, create_user, verify_password
+from ..core.auth import create_access_token
+from ..core.session import get_db
+from ..models.user import UserRegister, UserLogin
+from ..services.user_service import get_user_by_email, create_user, verify_password
 
 router = APIRouter()
 
@@ -34,7 +34,7 @@ async def signup(
 
 @router.post("/login", response_model=dict)
 async def login(
-    user_data: UserRegister = Body(...),
+    user_data: UserLogin = Body(...),
     db: Session = Depends(get_db)
 ):
     user = get_user_by_email(db, user_data.email)

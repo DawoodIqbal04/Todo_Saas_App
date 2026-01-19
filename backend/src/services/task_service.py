@@ -4,7 +4,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from fastapi import HTTPException, status # Import HTTPException and status
 from datetime import datetime # Import datetime for TaskBase, Task models
 
-from backend.src.models.task import Task, TaskBase # Assuming Task and TaskBase models are defined
+from ..models.task import Task, TaskBase # Assuming Task and TaskBase models are defined
 
 class TaskService:
     def __init__(self, db: Session):

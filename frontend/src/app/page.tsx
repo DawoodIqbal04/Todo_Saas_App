@@ -20,7 +20,7 @@ export default function Home() {
           </div>
 
           <div className="container px-4 md:px-6 hero-content">
-            <div className="flex flex-col items-center space-y-4 text-center">
+            <div className="flex flex-col items-center mt-10 space-y-4 text-center">
               <div className="space-y-2">
                 <div className="flex flex-col gap-1">
 
@@ -48,11 +48,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-white dark:bg-black">
+        <section className="relative z-50 w-full py-12 ">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">Key Features</div>
+                <div className="inline-block rounded-lg bg-gray-100 mb-10 px-3 py-1 text-sm dark:bg-gray-800">Key Features</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Everything You Need to Get Organized</h2>
                 <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                   Our todo app is packed with features to help you be more productive and stay on top of your tasks.
@@ -60,18 +60,18 @@ export default function Home() {
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              <div className="grid gap-1">
+              <div className="grid gap-5 bg-white/5 p-10 border border-white/30 rounded-xl">
                 <div className="flex items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-blue-500">
                     <path d="M20 6L9 17l-5-5"></path>
                   </svg>
                   <h3 className="text-xl font-bold">Easy to Use</h3>
                 </div>
-                <p className="text-gray-500 dark:text-gray-400">
-                  A simple and intuitive interface that's easy to navigate.
+                <p className="text-gray-500 dark:text-white">
+                  A simple and intuitive interface that let you navigate easily througout the app.
                 </p>
               </div>
-              <div className="grid gap-1">
+              <div className="grid gap-5 bg-white/5 p-10 border border-white/30 rounded-xl">
                 <div className="flex items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-blue-500">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -79,18 +79,18 @@ export default function Home() {
                   </svg>
                   <h3 className="text-xl font-bold">Stay Organized</h3>
                 </div>
-                <p className="text-gray-500 dark:text-gray-400">
+                <p className="text-gray-500 dark:text-white">
                   Create, edit, and delete tasks with ease to keep your life in order.
                 </p>
               </div>
-              <div className="grid gap-1">
+              <div className="grid gap-5 bg-white/5 p-10 border border-white/30 rounded-xl">
                 <div className="flex items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-blue-500">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                   </svg>
                   <h3 className="text-xl font-bold">Secure</h3>
                 </div>
-                <p className="text-gray-500 dark:text-gray-400">
+                <p className="text-gray-500 dark:text-white">
                   Your data is safe and secure with our robust authentication system.
                 </p>
               </div>

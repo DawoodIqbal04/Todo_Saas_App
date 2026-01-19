@@ -2,10 +2,10 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlmodel import Session
 
-from backend.src.core.auth import verify_user_id_match
-from backend.src.core.session import get_db
-from backend.src.models.task import Task, TaskCreate, TaskUpdate
-from backend.src.services.task_service import TaskService
+from ..core.auth import verify_user_id_match
+from ..core.session import get_db
+from ..models.task import Task, TaskCreate, TaskUpdate
+from ..services.task_service import TaskService
 
 router = APIRouter()
 

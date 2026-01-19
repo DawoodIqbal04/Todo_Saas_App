@@ -1,6 +1,6 @@
 from typing import Optional
 from sqlmodel import Session, select
-from backend.src.models.user import User, UserRegister
+from ..models.user import User, UserRegister
 from passlib.context import CryptContext
 from fastapi import HTTPException # Add this import
 

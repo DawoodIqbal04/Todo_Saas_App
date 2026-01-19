@@ -3,9 +3,9 @@ load_dotenv()
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.src.routes import auth, tasks
+from .routes import auth, tasks
 from sqlmodel import SQLModel
-from backend.src.core.database import engine
+from .core.database import engine
 
 app = FastAPI()
 

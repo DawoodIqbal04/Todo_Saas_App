@@ -14,5 +14,9 @@ class UserRegister(UserBase):
     password: str
     fullname: str
 
+class UserLogin(SQLModel):
+    email: str
+    password: str
+
 class UserCreate(UserBase):
     hashed_password: str

@@ -44,7 +44,7 @@ export default function SignupPage() {
   return (
     <div className="flex pt-30 flex-col min-h-screen bg-white dark:bg-black">
       <main className="flex-1 flex items-center justify-center p-4 md:p-6">
-        <div className="w-full max-w-md bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg p-6 space-y-6">
+        <div className="w-full max-w-md border border-white/50 bg-gray-100 dark:bg-white/10 rounded-lg p-6 space-y-6">
           <div className="space-y-2 text-center">
             <h1 className="text-3xl font-bold text-black dark:text-white">Create an Account</h1>
             <p className="text-gray-500 dark:text-gray-400">Enter your details to sign up.</p>
@@ -55,28 +55,33 @@ export default function SignupPage() {
               placeholder="Full Name"
               value={fullname}
               onChange={(e) => setFullname(e.target.value)}
-              className="flex h-10 w-full rounded-md border border-input bg-white dark:bg-gray-800 px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-black dark:text-white"
+              className="flex h-10 w-full rounded-md border border-white/50 bg-white dark:bg-white/15 px-3 py-2 text-sm text-black dark:text-white"
             />
             <input
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="flex h-10 w-full rounded-md border border-input bg-white dark:bg-gray-800 px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-black dark:text-white"
+              className="flex h-10 w-full rounded-md border border-white/50 bg-white dark:bg-white/15 px-3 py-2 text-sm text-black dark:text-white"
             />
             <input
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="flex h-10 w-full rounded-md border border-input bg-white dark:bg-gray-800 px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 text-black dark:text-white"
+              className="flex h-10 w-full rounded-md border border-white/50 bg-white dark:bg-white/15 px-3 py-2 text-sm text-black dark:text-white"
             />
+            <div className="w-full h-10 rounded bg-white relative group overflow-hidden">
+
             <button
               onClick={handleSignup}
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-full bg-blue-600 text-white hover:bg-blue-700"
-            >
+              className="relative z-10 flex items-center justify-center text-sm font-semibold group-hover:text-white transition-all h-full py-2 w-full text-black"
+              >
               Sign Up
             </button>
+            <div className="absolute transition-all w-full h-full bg-black right-0 rounded-[50%] duration-250 bottom-[-100%] group-hover:rounded-none group-hover:bottom-0"></div>
+              <div className="absolute w-full h-full bg-green-600 right-0 rounded-[50%] transition-all duration-500 bottom-[-200%] group-hover:rounded-none group-hover:bottom-0"></div>
+              </div>
             {message && <p className="text-sm text-red-500 dark:text-red-300 text-center mt-4">{message}</p>}
             <div className="text-center text-sm text-gray-500 dark:text-gray-400">
               Already have an account?{" "}
