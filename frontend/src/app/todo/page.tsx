@@ -2,8 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 type Task = {
   id: number;
@@ -20,19 +18,10 @@ export default function TodoPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskDescription, setNewTaskDescription] = useState("");
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
   const router = useRouter();
 
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("fullname");
-    setToken(null);
-    setUserId(null);
-    setFullname(null);
-    router.push("/auth");
-  };
 
   const fetchTasks = async () => {
     if (!token || !userId) return;
@@ -76,18 +65,38 @@ export default function TodoPage() {
     }
   };
   
-  const updateTask = async (taskId: number, completed: boolean) => {
+  const toggleTask = async (taskId: number, completed: boolean) => {
     if (!token || !userId) return;
     try {
-      const response = await fetch(`${API_URL}/${userId}/tasks/${taskId}`, {
+      const response = await fetch(`${API_URL}/${userId}/tasks/${taskId}/complete`, {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.ok) {
+        fetchTasks();
+      } else {
+        setMessage("Failed to update task.");
+      }
+    } catch (error) {
+      setMessage(`Error updating task: ${error instanceof Error ? error.message : String(error)}`);
+    }
+  };
+
+  const handleUpdateTask = async () => {
+    if (!token || !userId || !editingTask) return;
+    try {
+      const response = await fetch(`${API_URL}/${userId}/tasks/${editingTask.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ completed: !completed }),
+        body: JSON.stringify({ title: editingTask.title, description: editingTask.description }),
       });
       if (response.ok) {
+        setEditingTask(null);
         fetchTasks();
       } else {
         setMessage("Failed to update task.");
@@ -136,15 +145,11 @@ export default function TodoPage() {
   }, [token]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-white dark:bg-black">
-      <Navbar />
+    <div className="flex flex-col min-h-screen bg-white dark:bg-black pt-30">
       <main className="flex-1 p-4 md:p-6">
         <div className="max-w-4xl mx-auto">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold text-black dark:text-white">Welcome, {fullname || userId}!</h1>
-            <button onClick={handleLogout} className="p-2 bg-red-500 text-white rounded">
-              Log Out
-            </button>
+          <div className="flex items-center justify-center mb-6">
+            <h1 className="text-2xl font-bold text-black uppercase dark:text-white">Welcome Back {fullname || userId} 👋</h1>
           </div>
           <div className="grid gap-6">
             <div className="bg-gray-100 dark:bg-gray-900 rounded-lg p-6">
@@ -177,7 +182,7 @@ export default function TodoPage() {
                       <input
                         type="checkbox"
                         checked={task.completed}
-                        onChange={() => updateTask(task.id, task.completed)}
+                        onChange={() => toggleTask(task.id, task.completed)}
                         className="h-5 w-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                       />
                       <div>
@@ -187,12 +192,20 @@ export default function TodoPage() {
                         <p className="text-sm text-gray-500 dark:text-gray-400">{task.description}</p>
                       </div>
                     </div>
-                    <button onClick={() => deleteTask(task.id)} className="p-2 text-red-500 hover:text-red-700">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-                        <path d="M3 6h18" />
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                      </svg>
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => setEditingTask(task)} className="p-2 text-blue-500 hover:text-blue-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+                          <path d="M12 20h9" />
+                          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                        </svg>
+                      </button>
+                      <button onClick={() => deleteTask(task.id)} className="p-2 text-red-500 hover:text-red-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+                          <path d="M3 6h18" />
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                        </svg>
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -200,7 +213,37 @@ export default function TodoPage() {
           </div>
         </div>
       </main>
-      <Footer />
+
+      {editingTask && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white dark:bg-gray-900 rounded-lg p-6 w-full max-w-md">
+            <h2 className="text-lg font-semibold mb-4 text-black dark:text-white">Edit Task</h2>
+            <div className="grid gap-4">
+              <input
+                type="text"
+                placeholder="Title"
+                value={editingTask.title}
+                onChange={(e) => setEditingTask({ ...editingTask, title: e.target.value })}
+                className="p-2 border rounded bg-white dark:bg-gray-800 text-black dark:text-white w-full"
+              />
+              <textarea
+                placeholder="Description"
+                value={editingTask.description}
+                onChange={(e) => setEditingTask({ ...editingTask, description: e.target.value })}
+                className="p-2 border rounded bg-white dark:bg-gray-800 text-black dark:text-white w-full"
+              />
+              <div className="flex justify-end gap-4">
+                <button onClick={() => setEditingTask(null)} className="px-4 py-2 bg-gray-300 text-black rounded-md">
+                  Cancel
+                </button>
+                <button onClick={handleUpdateTask} className="px-4 py-2 bg-blue-500 text-white rounded-md">
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
