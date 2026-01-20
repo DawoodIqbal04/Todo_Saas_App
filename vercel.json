@@ -1,13 +1,21 @@
 {
   "version": 2,
+  "buildCommand": "cd frontend && npm run build",
+  "installCommand": "npm install --prefix frontend",
   "builds": [
     {
       "src": "frontend/next.config.ts",
-      "use": "@vercel/next"
+      "use": "@vercel/next",
+      "config": {
+        "rootDirectory": "frontend"
+      }
     },
     {
       "src": "api/index.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.9"
+      }
     }
   ],
   "rewrites": [
@@ -15,5 +23,8 @@
       "source": "/api/(.*)",
       "destination": "/api/index.py"
     }
-  ]
+  ],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@next_public_api_url"
+  }
 }

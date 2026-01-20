@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export default function Home() {
+
   return (
     <div className="flex flex-col min-h-[120dvh] bg-white dark:bg-black">
       <main className="flex-1">
@@ -23,13 +24,9 @@ export default function Home() {
             <div className="flex flex-col items-center mt-10 space-y-4 text-center">
               <div className="space-y-2">
                 <div className="flex flex-col gap-1">
-
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none bg-gradient-to-r from-purple-500 to-green-500 bg-clip-text text-transparent">
-                  Organize Your Bussy Life
-                </h1>
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">With Our Todo App</h1>
+                <h1 className="text-3xl py-2 font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">Organize Your Bussy Life <br/> With Our Todo App</h1>
                 </div>
-                <p className="mx-auto max-w-[700px] text-gray-200 md:text-xl">
+                <p className="mx-auto max-w-175 text-gray-200 md:text-xl">
                   A simple, yet powerful todo app to help you stay organized and productive.
                 </p>
               </div>

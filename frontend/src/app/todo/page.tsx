@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import ToggleSwitch from "@/components/ToggleSwitch";
 
 type Task = {
   id: number;
@@ -181,23 +182,21 @@ export default function TodoPage() {
                 </div>
               </div>
             </div>
-            <div className="bg-gray-100 dark:bg-white/30 border border-white/70 rounded-lg p-6">
+            <div className="bg-gray-100 dark:bg-white/20 border border-white/70 rounded-lg px-6 pb-4 pt-8">
               <h2 className="text-lg font-semibold mb-4 text-black dark:text-white">Your Tasks</h2>
               <ul className="space-y-4">
                 {tasks.map((task) => (
-                  <li key={task.id} className="flex items-center justify-between bg-white dark:bg-white/35 border border-white p-4 rounded-lg">
+                  <li key={task.id} className="flex items-center justify-between bg-white dark:bg-white/25 border border-white p-4 rounded-lg">
                     <div className="flex items-center gap-4">
-                      <input
-                        type="checkbox"
+                      <ToggleSwitch
                         checked={task.completed}
                         onChange={() => toggleTask(task.id, task.completed)}
-                        className="h-5 w-5 rounded-[50%] border-gray-300 text-blue-600 focus:ring-blue-500"
                       />
                       <div>
-                        <p className={`font-semibold ${task.completed ? "line-through text-gray-500" : "text-black dark:text-black"}`}>
+                        <p className={`font-semibold ${task.completed ? "line-through text-red-500" : "text-black dark:text-black"}`}>
                           {task.title}
                         </p>
-                        <p className="text-sm text-gray-500 dark:text-gray-800">{task.description}</p>
+                        <p className="text-sm text-gray-500 dark:text-white">{task.description}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
