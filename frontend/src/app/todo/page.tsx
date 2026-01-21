@@ -223,7 +223,7 @@ export default function TodoPage() {
 
       {editingTask && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white dark:bg-gray-900 rounded-lg p-6 w-full max-w-md">
+          <div className="bg-white dark:bg-white/10 border border-white/30 rounded-lg p-6 w-full max-w-md">
             <h2 className="text-lg font-semibold mb-4 text-black dark:text-white">Edit Task</h2>
             <div className="grid gap-4">
               <input
@@ -231,21 +231,31 @@ export default function TodoPage() {
                 placeholder="Title"
                 value={editingTask.title}
                 onChange={(e) => setEditingTask({ ...editingTask, title: e.target.value })}
-                className="p-2 border rounded bg-white dark:bg-gray-800 text-black dark:text-white w-full"
+                className="p-2 border rounded bg-white dark:bg-white/20 text-black dark:text-white w-full"
               />
               <textarea
                 placeholder="Description"
                 value={editingTask.description}
                 onChange={(e) => setEditingTask({ ...editingTask, description: e.target.value })}
-                className="p-2 border rounded bg-white dark:bg-gray-800 text-black dark:text-white w-full"
+                className="p-2 border rounded bg-white dark:bg-white/20 text-black dark:text-white w-full"
               />
-              <div className="flex justify-end gap-4">
-                <button onClick={() => setEditingTask(null)} className="px-4 py-2 bg-gray-300 text-black rounded-md">
+              <div className="flex items-center justify-end gap-4">
+                <div className="w-20 h-10 bg-gray-300 rounded-md flex items-center relative overflow-hidden group">
+
+                <button onClick={() => setEditingTask(null)} className="relative z-10 w-full h-full text-black group-hover:text-white transition-all rounded-md">
                   Cancel
                 </button>
-                <button onClick={handleUpdateTask} className="px-4 py-2 bg-blue-500 text-white rounded-md">
+                <div className="absolute transition-all w-full h-full bg-black right-0 rounded-[50%] duration-250 bottom-[-100%] group-hover:rounded-none group-hover:bottom-0"></div>
+              <div className="absolute w-full h-full bg-red-600 right-0 rounded-[50%] transition-all duration-500 bottom-[-200%] group-hover:rounded-none group-hover:bottom-0"></div>
+                </div>
+                <div className="w-20 h-10 bg-blue-500 rounded-md flex items-center relative overflow-hidden group">
+
+                <button onClick={handleUpdateTask} className="relative z-10 w-full h-full text-white rounded-md">
                   Save
                 </button>
+                <div className="absolute transition-all w-full h-full bg-black right-0 rounded-[50%] duration-250 bottom-[-100%] group-hover:rounded-none group-hover:bottom-0"></div>
+              <div className="absolute w-full h-full bg-green-600 right-0 rounded-[50%] transition-all duration-500 bottom-[-200%] group-hover:rounded-none group-hover:bottom-0"></div>
+                </div>
               </div>
             </div>
           </div>
