@@ -71,7 +71,7 @@ export default function SignupPage() {
               onChange={(e) => setPassword(e.target.value)}
               className="flex h-10 w-full rounded-md border border-white/50 bg-white dark:bg-white/15 px-3 py-2 text-sm text-black dark:text-white"
             />
-            <div className="w-full h-10 rounded bg-white relative group overflow-hidden">
+            <div className="w-full h-10 cursor-pointer rounded bg-white relative group overflow-hidden">
 
             <button
               onClick={handleSignup}

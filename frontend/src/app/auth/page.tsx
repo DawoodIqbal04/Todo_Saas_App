@@ -70,7 +70,7 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               className="flex h-10 w-full rounded-md border border-white/50 bg-white dark:bg-white/15 px-3 py-2 text-sm   text-black dark:text-white"
             />
-            <div className="relative rounded overflow-hidden h-10 w-full bg-white group">
+            <div className="relative cursor-pointer rounded overflow-hidden h-10 w-full bg-white group">
 
             <button
               onClick={handleLogin}
