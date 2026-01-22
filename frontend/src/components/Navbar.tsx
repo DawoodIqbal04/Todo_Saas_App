@@ -37,7 +37,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed right-50 z-99 rounded-full bg-none flex items-center h-20 w-[70%]">
+    <header className="fixed lg:right-50 z-99 rounded-full bg-none flex items-center h-20 lg:w-[70%] w-[40%]">
       <div className=" mt-10 rounded-full border border-white/20 px-10 flex items-center justify-between w-full h-full backdrop-blur-xl">
         <Link href={'/'} className="flex items-center gap-1">
           <div className="w-5 h-5 bg-white rounded-full"></div>
