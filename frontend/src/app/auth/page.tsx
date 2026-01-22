@@ -70,11 +70,11 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               className="flex h-10 w-full rounded-md border border-white/50 bg-white dark:bg-white/15 px-3 py-2 text-sm   text-black dark:text-white"
             />
-            <div className="relative cursor-pointer rounded overflow-hidden h-10 w-full bg-white group">
+            <div className="relative rounded overflow-hidden h-10 w-full bg-white group">
 
             <button
               onClick={handleLogin}
-              className="relative z-10 flex items-center justify-center group-hover:text-white text-black text-sm font-semibold h-10 w-full "
+              className="relative z-10 cursor-pointer flex items-center justify-center group-hover:text-white text-black text-sm font-semibold h-10 w-full "
               >
               Log In
             </button>

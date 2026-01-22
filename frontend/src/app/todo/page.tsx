@@ -169,12 +169,11 @@ export default function TodoPage() {
                   onChange={(e) => setNewTaskDescription(e.target.value)}
                   className="p-2 border rounded bg-white dark:bg-white/20 text-black dark:text-white w-full"
                 />
-                <div className="relative cursor-pointer w-full h-10 group overflow-hidden rounded bg-white">
+                <div className="relative w-full h-10 group overflow-hidden rounded bg-white">
 
-                <button onClick={createTask} className="relatve z-50 transition-all group-hover:text-white font-semibold w-full h-full text-black">
+                <button onClick={createTask} className="relatve z-50 cursor-pointer font-semibold w-full h-full text-black">
                   Add Task
                 </button>
-                <div className="absolute transition-all w-full h-full bg-black right-0 rounded-[50%] duration-250 bottom-[-100%] group-hover:rounded-none group-hover:bottom-0 pointer-events-none"></div>
               <div className="absolute w-full h-full bg-orange-500 right-0 rounded-[50%] transition-all duration-500 bottom-[-200%] group-hover:rounded-none group-hover:bottom-0 pointer-events-none"></div>
               <div className="absolute w-full h-full bg-green-600 right-0 rounded-[50%] transition-all duration-750 bottom-[-400%] group-hover:rounded-none group-hover:bottom-0 pointer-events-none"></div>
               <div className="absolute w-full h-full bg-red-600 right-0 rounded-[50%] transition-all duration-1000 bottom-[-400%] group-hover:rounded-none group-hover:bottom-0 pointer-events-none"></div>

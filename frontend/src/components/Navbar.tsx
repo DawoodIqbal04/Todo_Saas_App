@@ -49,10 +49,10 @@ export default function Navbar() {
         </Link>
         <nav className="ml-auto flex items-center gap-4 sm:gap-6">
           {isAuthenticated ? (
-            <div className="relative cursor-pointer group h-9 w-18 bg-white rounded overflow-hidden">
+            <div className="relative group h-9 w-18 bg-white rounded overflow-hidden">
               <button
                 onClick={handleLogout}
-                className="relative z-10 flex h-9 items-center transition-all justify-center w-18 py-2 text-sm text-black group-hover:text-white font-semibold"
+                className="relative z-10 cursor-pointer flex h-9 items-center transition-all justify-center w-18 py-2 text-sm text-black group-hover:text-white font-semibold"
               >
                 Logout
               </button>
